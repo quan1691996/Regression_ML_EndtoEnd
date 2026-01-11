@@ -76,6 +76,7 @@ def clean_and_merge(df: pd.DataFrame, metros_path: str | None = "data/raw/usmetr
 
     # Merge lat/lng
     metros = pd.read_csv(metros_path)
+    metros['metro_full'] = metros['metro_full'].apply(lambda x: x.split(',')[0])
     if "metro_full" not in metros.columns or not {"lat", "lng"}.issubset(metros.columns):
         print("⚠️ Skipping lat/lng merge: metros file missing required columns.")
         return df

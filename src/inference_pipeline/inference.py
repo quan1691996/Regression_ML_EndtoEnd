@@ -68,7 +68,7 @@ def predict(
     # Target encoding (city_full → city_full_encoded)
     if Path(target_encoder_path).exists() and "city_full" in df.columns:
         target_encoder = load(target_encoder_path)
-        df["city_full_encoded"] = target_encoder.transform(df["city_full"])
+        df["city_encoded"] = target_encoder.transform(df["city_full"])
         df = df.drop(columns=["city_full"], errors="ignore")
 
     # Drop leakage columns
